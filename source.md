@@ -18,6 +18,8 @@ Java Developer and Javascript Fan
 
 ## What web was
 
+![](img/granpa.gif)
+
 Note:
 Prima di iniziare a parlare del web di oggi, abbiamo bisogno di una introduzione storica all'argomento. Conoscere la storia del web ci aiuterà a comprendere gli strumenti di oggi.
 
@@ -30,7 +32,7 @@ Voglio presentarvi l'evoluzione del web da un punto di vista tecnologico e metod
 ![](img/web_story_0.png)
 
 Note:
-Prima del 1991 i calcolatori comunicavano tra di loro senza un protocollo applicativo, ma adottando convenzioni all'interno del team di sviluppatori, di come usare i socket TCP. CORBA risolveva questo problema: è un protocollo applicativo unico, indipendente dal linguaggio di programmazione, che mette in contatto server e client. CORBA implementa il paradigma RPC (Request Response Call), cioè il client chiama una funzione che viene eseguita sul server in maniera totalmente trasparente.
+Prima del 1991 i calcolatori comunicavano tra di loro senza un protocollo applicativo, ma adottando convenzioni all'interno del team di sviluppatori, di come usare i socket TCP. CORBA risolveva questo problema: è un protocollo applicativo unico, indipendente dal linguaggio di programmazione, che mette in contatto server e client. CORBA implementa il paradigma RPC (Remote Procedure Call), cioè il client chiama una funzione che viene eseguita sul server in maniera totalmente trasparente.
 
 ---
 
@@ -204,12 +206,131 @@ SOAP è l'ultimo grande standard delle network applications. Utilizza HTTP per i
 
 ---
 
+## 2000: RESTful architecture
+
+- No state on server
+- Client knows less things about the server
+- Unique interface
+- Cacheability
+
+Note:
+RESTful è un'architettura che si contrappone a SOAP ma con ragionamenti simili. Queste sono le maggiori differenze.
+Non può essere comparato direttamente con SOAP in quanto REST è un paradigma di programmazione e SOAP un protocollo specifico, ma possiamo interpretare questo confronto così:
+SOAP è molto più incentrato sulle network applications piuttosto che in un utilizzo con AJAX
+
+---
+
+## REST and HTTP
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-yw4l{vertical-align:top;border-bottom: 1px solid #ccc !important;}
+@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}}</style>
+<div class="tg-wrap"><table class="tg">
+  <tr>
+    <th class="tg-yw4l">Operation</th>
+    <th class="tg-031e">URI</th>
+    <th class="tg-031e">HTTP Method</th>
+    <th class="tg-yw4l">Query Parameters</th>
+    <th class="tg-yw4l">Path Parameters</th>
+    <th class="tg-yw4l">Request Body</th>
+    <th class="tg-yw4l">Response body</th>
+    <th class="tg-yw4l">Note</th>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Get user</td>
+    <td class="tg-yw4l">/users/{user_id}</td>
+    <td class="tg-yw4l">GET</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">user_id: User id</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">`User` object</td>
+    <td class="tg-yw4l">Logged user receives<br>`ExtendedUser` object<br>like /users/me</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Add user</td>
+    <td class="tg-yw4l">/users/add_user</td>
+    <td class="tg-yw4l">POST</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">`User` object</td>
+    <td class="tg-yw4l">`id` string of new user</td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">List users</td>
+    <td class="tg-yw4l">/users</td>
+    <td class="tg-yw4l">GET</td>
+    <td class="tg-yw4l">filter: users filter</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">List of `User` objects</td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Get logged user</td>
+    <td class="tg-yw4l">/users/me</td>
+    <td class="tg-yw4l">GET</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">`ExtendedUser` object</td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Update user</td>
+    <td class="tg-yw4l">/users/me</td>
+    <td class="tg-yw4l">PUT</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">`User` object</td>
+    <td class="tg-yw4l">`ExtendedUser` object</td>
+    <td class="tg-yw4l">A user can modify only<br>itself</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Remove user</td>
+    <td class="tg-yw4l">/users/{user_id}</td>
+    <td class="tg-yw4l">DELETE</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">user_id: User id</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">`ok` string</td>
+    <td class="tg-yw4l">Only users of `admin`<br>group can remove users</td>
+  </tr>
+</table></div>
+
+---
+
 ## The new Millenium: Web services
 
 ![](img/web_story_8.png)
 
 Note:
-SOAP e REST hanno dato il via all'esplosione dei web services, o web API. Ora non sono solo i calcolatori interconnessi tra di loro, ma anche gli applicativi web formano una tela di interconnessioni elaboratissima. I web service sono servizi pagati dagli utilizzatori per ottenere informazioni in formato XML che poi vengono rielaborate per essere utilizzate nei propri applicativi. AJAX e SOAP permettono di usufruire di questi servizi sia da web client che da web server.
+Siamo finalmente nel nuovo millennio!
+
+SOAP e REST danno il via all'esplosione dei web services, o web API. Ora non sono solo i calcolatori interconnessi tra di loro, ma anche gli applicativi web formano una tela di interconnessioni elaboratissima. I web service sono servizi pagati dagli utilizzatori per ottenere informazioni in formato XML che poi vengono rielaborate per essere utilizzate nei propri applicativi. AJAX e SOAP permettono di usufruire di questi servizi sia da web client che da web server.
+
+---
+
+### SOAP/REST Web Application infrastructure
+
+![](img/web_story_9.png)
+
+Note:
+- web server pool
+- load balancer
+- event queue/bus
+- monolita: applicativo backend completo di tutti i componenti software per completare una richiesta
+- api gateway
+- manca una base di dati
+- interconnessione con mainframe legacy e servizi web esterni
+- possibilità di utilizzare una web app o applicazione binaria
+
+In questo nuovo mondo si affermano:
+- La programmazione asincrona
+- La programmazione SOA
 
 ---
 
@@ -228,36 +349,6 @@ In questo mondo il modello sincrono non è più adatto per sviluppare applicativ
 
 Note:
 Far notare che programmazione sincrona e asincrona sono paradigmi di programmazione che prescindono dal single threading e multithreading o in generale da come sono implementati
-
----
-
-## 2000: RESTful architecture
-
-- No state on server
-- Client knows less things about the server
-- Unique interface
-- Cacheability
-
-Note:
-RESTful è un'architettura che si contrappone a SOAP ma con ragionamenti simili. Queste sono le maggiori differenze.
-Non può essere comparato direttamente con SOAP in quanto REST è un paradigma di programmazione e SOAP un protocollo specifico, ma possiamo interpretare questo confronto così:
-SOAP è molto più incentrato sulle network applications piuttosto che in un utilizzo con AJAX
-
----
-
-### REST Web Application infrastructure
-
-![](img/web_story_9.png)
-
-Note:
-- web server pool
-- load balancer
-- event queue/bus
-- monolita: applicativo backend completo di tutti i componenti software per completare una richiesta
-- api gateway
-- manca una base di dati
-- interconnessione con mainframe legacy e servizi web esterni
-- possibilità di utilizzare una web app o applicazione binaria
 
 ---
 
@@ -343,7 +434,7 @@ jQuery ha assunto una tale importanza che molte API di jQuery sono state portate
 
 ### 2008: Google's V8 Javascript engine
 
-![](img/v8.jpg)
+<img src="img/v8.jpg" width="70%"></img>
 
 Note:
 V8 è l'engine utilizzato da Google Chrome. Quando è uscito è stata una assoluta rivoluzione per il mondo del web, in quanto la sua concezione diversa dagli altri JS engine sul mercato portava prestazioni comparabili a quelle del C++.
@@ -396,6 +487,8 @@ I microservice sono lo step evolutivo più recente dello sviluppo web backend. L
 
 Il concetto dietro i microservice è quello di smontare il monolita in tanti piccoli componenti, che si interconnettono tra di loro.
 
+è il concetto di SOA sotto steroidi!
+
 ---
 
 ## Future: ...and Serverless
@@ -423,3 +516,9 @@ Il concetto dietro i microservice è quello di smontare il monolita in tanti pic
 ---
 
 ## Thank You!
+
+---
+
+<video>
+  <source data-src="img/wat.mp4" type="video/mp4" />
+</video>
