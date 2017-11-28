@@ -27,12 +27,24 @@ Voglio presentarvi l'evoluzione del web da un punto di vista tecnologico e metod
 
 ---
 
+## Pre-90': Network-based application
+
+![](img/unix.jpg)
+
+Note:
+L'infrastruttura di internet era nata, molto digital divide, pc non accessibili a tutti. Tipi di network-based applications:
+
+- Software che supportavano protocolli applicativi precisi: posta SMTP, file transfer FTP
+- Software ad hoc aziendali: prenotazione biglietti aerei, database polizia. questi  comunicavano tra di loro senza un protocollo applicativo, ma adottando convenzioni all'interno del team di sviluppatori, di come usare i socket TCP
+
+---
+
 ## 1991: RPC with CORBA
 
 ![](img/web_story_0.png)
 
 Note:
-Prima del 1991 i calcolatori comunicavano tra di loro senza un protocollo applicativo, ma adottando convenzioni all'interno del team di sviluppatori, di come usare i socket TCP. CORBA risolveva questo problema: è un protocollo applicativo unico, indipendente dal linguaggio di programmazione, che mette in contatto server e client. CORBA implementa il paradigma RPC (Remote Procedure Call), cioè il client chiama una funzione che viene eseguita sul server in maniera totalmente trasparente.
+CORBA risolveva questo problema: è un protocollo applicativo unico, indipendente dal linguaggio di programmazione, che mette in contatto server e client. CORBA implementa il paradigma RPC (Remote Procedure Call), cioè il client chiama una funzione che viene eseguita sul server in maniera totalmente trasparente.
 
 ---
 
