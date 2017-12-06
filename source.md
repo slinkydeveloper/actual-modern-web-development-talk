@@ -76,7 +76,7 @@ http://info.cern.ch
 Note:
 La storia del web dinamico è iniziata con CGI. CGI è un protocollo standard che permetteva ai web server di eseguire software di qualsiasi linguaggio per generare/elaborare pagine dinamicamente. Tutt'oggi è ancora usato in alcuni usecase particolari come i pannelli di controllo dei router.
 
-Cit. Wikipedia: Il file CGI è un semplice programma già compilato e la risposta viene acquisita attraverso standard output (banalmente cout).
+Il file CGI è un semplice programma già compilato e la risposta viene acquisita attraverso standard output (banalmente cout).
 
 ---
 
@@ -123,7 +123,7 @@ PHP ha introdotto/rielaborato questi tre paradigmi fondamentali
 ![](img/php-multi-threaded-execution.jpg)
 
 Note:
-Il PHP spawna un nuovo thread/processo ogni volta che un nuovo client si collega al server. Questo processo rimane attivo finchè non viene completata la richiesta, poi il processo muore. Se si collegano 5 client contemporaneamente si creano 5 thread che vengono eseguiti parallelamente
+Il PHP crea un nuovo thread/processo ogni volta che un nuovo client si collega al server. Questo processo rimane attivo finchè non viene completata la richiesta, poi il processo muore. Se si collegano 5 client contemporaneamente si creano 5 thread che vengono eseguiti parallelamente
 
 ---
 
@@ -320,8 +320,6 @@ SOAP è molto più incentrato sulle network applications piuttosto che in un uti
 ![](img/web_story_8.png)
 
 Note:
-Siamo finalmente nel nuovo millennio!
-
 SOAP e REST danno il via all'esplosione dei web services, o web API. Ora non sono solo i calcolatori interconnessi tra di loro, ma anche gli applicativi web formano una tela di interconnessioni elaboratissima. I web service sono servizi pagati dagli utilizzatori per ottenere informazioni in formato XML che poi vengono rielaborate per essere utilizzate nei propri applicativi. AJAX e SOAP permettono di usufruire di questi servizi sia da web client che da web server.
 
 ---
